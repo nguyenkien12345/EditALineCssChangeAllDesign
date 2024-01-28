@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit A Line CSS Changes All Design</title>
+</head>
+
+<style>
+    body {
+        font-family: Poppins;
+    }
+
+    *, 
+    *::after, 
+    *::before {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    :root {
+        --background-color: #1a1a1a;
+        --text-color: #eee;
+        --border-radius: 30px;
+    }
+
+    .card {
+        /* Cách code 1 */
+        /* width: 370px; */
+        /* Nếu màn hình nào có kích thước nhỏ hơn 370px thì chiều rộng của card sẽ là 100% */
+        /* max-width: 100%; */
+
+        /* Cách code 2 */
+        width: min(370px, 100%);
+        color: var(--text-color);
+        position: relative;
+    }
+
+        .card .author {
+            width: 60%;
+            height: 70px;
+            background-color: var(--background-color);
+            display: grid;
+            grid-template-columns: 50px 1fr;
+            gap: 20px;
+            padding: 10px;
+            border-top-right-radius: var(--border-radius);
+            border-top-left-radius: var(--border-radius);
+        }
+
+            .card .author img {
+                width: 100%;
+            }
+
+            .card .author .name {
+                font-weight: bold;
+            }
+
+        .card .image {
+            background-color: var(--background-color);
+            text-align: center;
+            border-top-right-radius: var(--border-radius);
+        }
+
+            .card .image img {
+                width: 90%;
+                transform: rotate(-15deg);
+                transition: 0.5s;
+            }
+
+            .card .image img:hover {
+                transform: rotate(25deg) scale(1.1) translate(10px, -20px);
+            }
+        
+        .card .info {
+            background-color: var(--background-color);
+            padding: 30px;
+            text-align: center;
+        }
+
+            .card .info .name {
+                font-size: 1.7em;
+            }
+
+        .card .more {
+            background-color: var(--background-color);
+            padding: 0px 30px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            border-bottom-right-radius: var(--border-radius);
+            border-bottom-left-radius: var(--border-radius);
+        }
+        
+            .card .more .buttons {
+                display: flex;
+                gap: 8px
+            }
+
+                .card .more .buttons button{
+                    font-family: Poppins;
+                    color: var(--text-color);
+                    background-color: #313131;
+                    border: 1px solid #454545;
+                }
+
+                .card .more .buttons button:nth-child(1){
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                }
+
+                .card .more .buttons button:nth-child(2){
+                    padding: 0 20px;
+                    border-radius: var(--border-radius);
+                }
+
+            .card .more .options ul{
+                margin: 10px 0 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                border: 1px solid #313131;
+                padding: 5px;
+                width: max-content;
+                border-radius: 20px;
+            }
+
+            .card .more .options ul li{
+                width: 15px;
+                height: 15px;
+                border-radius: 50%;
+                list-style: none;
+                background-color: var(--color);
+            }
+
+    .card::before {
+        background-color: transparent;
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 40%;
+        height: 70px;
+        content: '';
+        border-bottom-left-radius: var(--border-radius);
+        box-shadow: -30px 30px 0 var(--background-color);
+    }
+
+    .card::after {
+        background-color: var(--background-color);
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: calc(40% - 10px);
+        height: 60px;
+        border-radius: var(--border-radius);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: 500;
+        font-size: large;
+
+    }
+
+    /* Nếu có 1 biến --isPopular: true được khai báo trong stype đoạn code dưới sẽ được áp dụng  */
+    @container style(--isPopular: true) {
+        .card::after {
+            content: 'Popular';
+        }
+        .card .more {
+            box-shadow: 0 10px 0 #ff6723;
+        }
+    }
+
+    /* Nếu có 1 biến --isNew: true được khai báo trong stype đoạn code dưới sẽ được áp dụng  */
+    @container style(--isNew: true) {
+        .card::after {
+            content: 'New'
+        }
+        .card .more {
+            box-shadow: 0 10px 0 #00a6ed;
+        }
+    }
+</style>
+
+<body>
+    <article class="card" style="--isNew: true">
+        <div class="author">
+            <div>
+                <img src="https://media.licdn.com/dms/image/D5603AQHG5raebuCnBA/profile-displayphoto-shrink_800_800/0/1677594302126?e=1712188800&v=beta&t=4gEeDa6-TMRheblXNXPmKWCZwIwolLmnB7TN3khygbw" alt="">
+            </div>
+            <div>
+                <div class="name">MTTT</div>
+                Subscribe
+            </div>
+        </div>
+
+        <div class="image">
+            <img src="https://freepngimg.com/thumb/shoes/26170-4-vector-shoes-image.png" alt="">
+        </div>
+
+        <div class="info">
+            <div class="name">Mai Thị Thanh Thúy</div>
+            <div class="job">HR</div>
+        </div>
+
+        <div class="more">
+            <div class="buttons">
+                <button> / </button>
+                <button>Buy Now</button>
+            </div>
+            <div class="options">
+                <label for="">Options</label>
+                <ul>
+                    <li style="--color: #fe6969"></li>
+                    <li style="--color: #ffa666"></li>
+                    <li style="--color: #ffdd66"></li>
+                    <li style="--color: #323232"></li>
+                </ul>
+            </div>
+        </div>
+    </article>
+</body>
+
+</html>
